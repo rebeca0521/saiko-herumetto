@@ -5,6 +5,7 @@ import merchandiseImg from '../assets/merchandise.png';
 import landingHeadImg from '../assets/landing_head.png';
 import landingTitleImg from '../assets/landing_title.png';
 import banner580kImg from '../assets/banner_580k.jpg';
+import mainImg1 from '../assets/main-img1.jpg';
 
 export default function MainPage({ onExit }) {
   const [activeTab, setActiveTab] = useState('home');
@@ -367,7 +368,7 @@ export default function MainPage({ onExit }) {
                   {/* 1. 【圖片 1】 首頁歡迎橫幅照片 */}
                   <div style={{ width: '100%', maxWidth: '700px', display: 'flex', justifyContent: 'center' }}>
                     <img 
-                      src="src\assets\main-img1.jpg" 
+                      src={mainImg1} 
                       alt="Cult Believers" 
                       style={{ width: '100%', height: 'auto', objectFit: 'contain' }} 
                     />
