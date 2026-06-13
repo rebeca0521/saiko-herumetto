@@ -1,0 +1,736 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@400;700;900&family=Press+Start+2P&family=Yomogi&display=swap');
+
+:root {
+  --color-dark: #121212;
+  --color-white: #ffffff;
+  --color-cream: #f4f3ef;
+  --color-retro-blue: #0088e8;
+  --color-retro-blue-dark: #005fad;
+  --color-retro-yellow: #fce83a;
+  --color-retro-red: #e73d32;
+  --color-retro-green: #3ab54a;
+  --color-retro-text: #2c2c2c;
+  --font-hand: 'M PLUS Rounded 1c', 'Kosugi Maru', sans-serif;
+  --font-retro: 'Press Start 2P', monospace;
+  --border-thick: 3px solid #000000;
+  --border-thin: 2px solid #000000;
+  --shadow-retro: 4px 4px 0px #000000;
+  --shadow-retro-small: 2px 2px 0px #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-hand);
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-retro-text);
+  overflow-x: hidden;
+  image-rendering: pixelated;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+  border-left: var(--border-thin);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-retro-blue);
+  border: var(--border-thin);
+  box-shadow: inset -2px -2px 0px rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-retro-blue-dark);
+}
+
+/* Global Helper Styles */
+.retro-border {
+  border: var(--border-thick);
+  border-radius: 4px;
+  box-shadow: var(--shadow-retro);
+  background: var(--color-white);
+  transition: all 0.15s ease;
+}
+
+.retro-border:active:not(.disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.handdrawn-text {
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+}
+
+.bg-tiled-diagonal {
+  background-color: #e8e7e3;
+  /* 
+    【放大背景字體教學 - 30px 對齊字體】：
+    - 將 pattern 的寬度設為 330，高度設為 60。
+    - .txt 中的 font-size 設為 30px (字體縮小至 30px)。
+    - 文字寬度約為 270px，配合 330px 的單元寬度，使「サ」與「教」之間留有 60px 的清晰字距。
+    - 移除了交錯位移，每一行都從 x='0' (及包裹複製 x='-330') 開始，使文字在垂直方向完全對齊。
+  */
+  background-image: url("data:image/svg+xml;utf8,<svg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='pat' width='330' height='60' patternUnits='userSpaceOnUse' patternTransform='rotate(28)'><style>.txt{font-family:'Kosugi Maru',sans-serif;font-size:30px;font-weight:bold;fill:rgba(0,0,0,0.06);}</style><text x='0' y='40' class='txt'>サイコヘルメット教</text><text x='-330' y='40' class='txt'>サイコヘルメット教</text></pattern></defs><rect width='100%' height='100%' fill='url(%23pat)'/></svg>");
+  background-repeat: repeat;
+  animation: scrollBg 20s linear infinite;
+}
+
+.bg-tiled-sidebar {
+  background-color: var(--color-retro-blue);
+  background-image: url("data:image/svg+xml;utf8,<svg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><filter id='wiggle_bg'><feTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='3' result='noise' /><feDisplacementMap in='SourceGraphic' in2='noise' scale='8' xChannelSelector='R' yChannelSelector='G' /></filter><pattern id='pat_sidebar' width='330' height='60' patternUnits='userSpaceOnUse' patternTransform='rotate(28)'><style>.txt{font-family:'Yomogi','Kosugi Maru',sans-serif;font-size:30px;font-weight:bold;fill:rgba(0,0,0,0.15);filter:url(%23wiggle_bg);}</style><text x='0' y='40' class='txt'>サイコヘルメット教</text><text x='-330' y='40' class='txt'>サイコヘルメット教</text></pattern></defs><rect width='100%' height='100%' fill='url(%23pat_sidebar)'/></svg>");
+  background-repeat: repeat;
+}
+
+@keyframes scrollBg {
+  from { background-position: 0 0; }
+  to { background-position: 330px 60px; }
+}
+
+@keyframes scrollBgSidebar {
+  from { background-position: 0 0; }
+  to { background-position: 160px 80px; }
+}
+
+/* Animations */
+.float-anim {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.pulse-anim {
+  animation: pulsing 1.5s ease-in-out infinite;
+}
+
+@keyframes pulsing {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: var(--border-thin);
+  border-bottom: var(--border-thin);
+  background: var(--color-retro-yellow);
+  padding: 4px 0;
+  font-weight: bold;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Landing Page Styling */
+.landing-container {
+  min-height: 100vh;
+  background-color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-white);
+  padding: 20px;
+}
+
+.landing-face {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+  animation: flicker 4s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.1));
+    opacity: 0.85;
+  }
+}
+
+.landing-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0px #ff3333, -2px -2px 0px #0088e8;
+}
+
+.landing-enter-btn {
+  background: var(--color-white);
+  color: var(--color-dark);
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  border: 4px solid var(--color-white);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+  transition: all 0.2s ease;
+}
+
+.landing-enter-btn:hover {
+  background: var(--color-dark);
+  color: var(--color-white);
+  border-color: var(--color-white);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.landing-enter-btn:active {
+  transform: scale(0.95);
+}
+
+/* Loading Page Styling */
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.loading-avatar {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 25px;
+  object-fit: contain;
+}
+
+.loading-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #555555;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.loading-bar-wrapper {
+  width: 280px;
+  height: 24px;
+  background: var(--color-white);
+  border: var(--border-thick);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-retro-small);
+}
+
+.loading-bar {
+  height: 100%;
+  background: var(--color-retro-blue);
+  width: 0%;
+  transition: width 0.1s linear;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.25) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+  animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+  from { background-position: 0 0; }
+  to { background-position: 20px 0; }
+}
+/* Main Page Layout */
+.main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout Columns */
+.main-layout {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebars styling */
+.sidebar-left, .sidebar-right {
+  width: 220px; /* Fixed width of sidebars so center is maximized */
+  padding: 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-left {
+  /* No border-right as requested */
+}
+
+.sidebar-right {
+  /* No border-left as requested */
+}
+
+.sidebar-content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Content Panel */
+.content-panel {
+  flex: 1; /* Take up all remaining space (zooms the center white area) */
+  padding: 20px;
+  background: var(--color-white);
+  overflow-y: auto;
+}
+
+/* Sidebar Elements */
+.menu-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: var(--color-white);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  font-family: 'Yomogi', 'M PLUS Rounded 1c', sans-serif;
+  border: var(--border-thick);
+  border-radius: 4px;
+  filter: url(#wiggle-sidebar);
+  transition: transform 0.1s ease;
+}
+
+.menu-btn:hover {
+  filter: url(#wiggle-sidebar) brightness(1.1);
+  transform: scale(1.03);
+}
+
+.menu-btn:active {
+  transform: scale(0.97);
+}
+
+.menu-btn.active {
+  background: var(--color-retro-yellow) !important;
+  color: var(--color-dark) !important;
+}
+
+.under-construction-box {
+  background: var(--color-retro-yellow);
+  padding: 10px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-retro-small);
+}
+
+.whats-new-box {
+  background: var(--color-white);
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 0.85rem;
+}
+.whats-new-title {
+  font-weight: bold;
+  border-bottom: 2px dashed #000;
+  margin-bottom: 6px;
+  color: var(--color-retro-red);
+}
+
+.gods-voice-box {
+  margin-top: 15px;
+  background: var(--color-white);
+  padding: 10px;
+  text-align: center;
+}
+.gods-voice-btn {
+  background: var(--color-retro-yellow);
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: var(--border-thin);
+}
+
+/* Right Sidebar Elements */
+.online-shop-card {
+  background: var(--color-retro-red);
+  color: var(--color-white);
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.shop-scroll-icon {
+  width: 70px;
+  height: auto;
+  margin: 8px 0;
+  transition: transform 0.2s ease;
+}
+
+.online-shop-card:hover .shop-scroll-icon {
+  transform: rotate(5deg) scale(1.1);
+}
+
+.visitor-counter-box {
+  background: var(--color-white);
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.counter-digits {
+  font-family: var(--font-retro);
+  background: #000;
+  color: var(--color-retro-green);
+  padding: 6px 8px;
+  display: inline-block;
+  font-size: 1.1rem;
+  margin: 6px 0;
+  letter-spacing: 2px;
+  border: var(--border-thin);
+}
+
+.twitter-feed-box {
+  background: #15202b;
+  color: var(--color-white);
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.twitter-header {
+  font-weight: bold;
+  border-bottom: 1px solid #38444d;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  color: #1da1f2;
+}
+
+.tweet-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tweet-item {
+  border-bottom: 1px solid #38444d;
+  padding-bottom: 6px;
+}
+
+.tweet-user {
+  font-weight: bold;
+  color: #8899a6;
+}
+
+.broccoli-graphic {
+  width: 100%;
+  height: 70px;
+  object-fit: cover;
+  margin-top: 8px;
+  border: 1px solid #38444d;
+}
+
+/* Center Panel Sections */
+.main-header-text {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 900;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.banner-img-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.welcome-para {
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+/* Merchandise Grid */
+.merch-section-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-left: 6px solid var(--color-retro-blue);
+  padding-left: 8px;
+}
+
+.merch-grid-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.merch-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.merch-table th, .merch-table td {
+  border: var(--border-thin);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.merch-table th {
+  background: var(--color-cream);
+  font-weight: bold;
+}
+
+.buy-btn {
+  background: var(--color-retro-yellow);
+  border: var(--border-thin);
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.buy-btn:hover {
+  background: var(--color-white);
+}
+
+/* Bulletin Board (掲示板) */
+.board-container {
+  background: var(--color-cream);
+  padding: 15px;
+  border: var(--border-thin);
+  margin-top: 15px;
+}
+
+.board-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.board-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.board-input {
+  border: var(--border-thin);
+  padding: 6px 10px;
+  font-size: 0.95rem;
+}
+
+.board-input-name {
+  width: 150px;
+}
+
+.board-input-text {
+  flex: 1;
+}
+
+.board-submit-btn {
+  background: var(--color-retro-blue);
+  color: var(--color-white);
+  border: var(--border-thin);
+  padding: 6px 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.board-submit-btn:hover {
+  background: var(--color-retro-blue-dark);
+}
+
+.board-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.board-post {
+  background: var(--color-white);
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 2px;
+}
+
+.post-author {
+  font-weight: bold;
+  color: var(--color-retro-blue-dark);
+}
+
+.post-content {
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  max-width: 400px;
+  width: 100%;
+  background: var(--color-white);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-close {
+  background: var(--color-retro-red);
+  color: var(--color-white);
+  border: var(--border-thin);
+  padding: 6px 20px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* Mobile Hamburger Menu */
+.mobile-menu-toggle {
+  display: none;
+  background: var(--color-retro-blue);
+  color: var(--color-white);
+  border: var(--border-thin);
+  padding: 6px 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .sidebar-right {
+    display: none; /* Hide right sidebar on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar-left {
+    width: 100%;
+    border-right: none;
+    border-bottom: var(--border-thick);
+    padding: 12px;
+    align-items: center; /* Center content on mobile */
+  }
+  
+  .sidebar-content-wrapper {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .content-panel {
+    width: 100%; /* Take full width on mobile */
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .menu-list-collapse {
+    display: none;
+  }
+  .menu-list-collapse.show {
+    display: block;
+  }
+  
+  .sidebar-right {
+    display: block;
+    width: 100%;
+    border-left: none;
+    border-top: var(--border-thick);
+    align-items: center; /* Center content on mobile */
+  }
+  
+  .main-header-text {
+    font-size: 1.8rem;
+  }
+}
+
+/* Alternating menu buttons styling */
+.menu-btn-red {
+  background: var(--color-retro-red) !important;
+  color: var(--color-retro-green) !important;
+}
+.menu-btn-blue {
+  background: var(--color-retro-blue-dark) !important;
+  color: var(--color-retro-yellow) !important;
+}
+
