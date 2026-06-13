@@ -1,9 +1,9 @@
 {
-  "name": "psycho-helmet-cult",
+  "name": "saiko-herumetto",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://saiko-herumetto.com",
+  "homepage": "https://rebeca0521.github.io/saiko-herumetto",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
