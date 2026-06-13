@@ -17,7 +17,7 @@ export default function LandingPage({ onEnter }) {
   };
 
   return (
-    <div className="landing-container" style={{ position: 'relative', minHeight: '100vh', justifyContent: 'center', gap: '15px', padding: '40px 20px' }}>
+    <div className="landing-container" style={{ position: 'relative', minHeight: '100vh', justifyContent: 'center', gap: '1px', padding: '20px 20px' }}>
       
       {/* SVG Wiggle Filter (手繪歪歪扭扭效果濾鏡) */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
@@ -103,7 +103,7 @@ export default function LandingPage({ onEnter }) {
       */}
       <div style={{
         width: '100%',
-        height: '280px', /* 👈 已從 420px 縮小至 280px，避免垂直高度溢出切到 ENTER 按鈕 */
+        height: '380px', /* 👈 調小為 240px 以縮小頭像並拉近間距 */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -132,7 +132,7 @@ export default function LandingPage({ onEnter }) {
       */}
       <div style={{
         width: '100%',
-        height: '80px', /* 👈 已從 110px 縮小至 80px，防止高度切到 ENTER */
+        height: '100px', /* 👈 調小為 65px，拉近標題與頭像及 ENTER 的間距 */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -165,7 +165,7 @@ export default function LandingPage({ onEnter }) {
           background: 'none',
           border: 'none',
           color: 'white',
-          fontSize: '2.8rem', /* 👈 由於間距變為緊湊，ENTER 字型可以稍微放大為 2.8rem 看得更清楚 */
+          fontSize: '3rem', /* 👈 由於間距變為緊湊，ENTER 字型可以稍微放大為 2.8rem 看得更清楚 */
           fontWeight: 'bold',
           cursor: 'pointer',
           letterSpacing: '0.15em',
