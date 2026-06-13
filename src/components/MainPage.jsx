@@ -14,7 +14,7 @@ export default function MainPage({ onExit }) {
   
   // Bulletin Board State
   const [posts, setPosts] = useState([
-    { id: 1, author: '小酒窩 (エクボ)', text: '本教隨時歡迎迷惘的羔羊，只要信奉腦電波教，你就能獲得幸福！', date: '2026-06-13 10:15' },
+    { id: 1, author: '小酒窩 (エクボ)', text: '本教隨時歡迎迷惘的羔羊，只要信奉超能安全帽教，你就能獲得幸福！', date: '2026-06-13 10:15' },
     { id: 2, author: '靈幻新隆 (Reigen)', text: '如果是煩惱諮詢，建議也來我們「靈類諮詢所」，新客享有首小時半價優惠喔。', date: '2026-06-13 11:30' },
     { id: 3, author: '路人 (Mob)', text: '師父，請不要在這裡做生意廣告。另外，請問大家有看到我的貓嗎？', date: '2026-06-13 12:05' }
   ]);
@@ -166,7 +166,7 @@ export default function MainPage({ onExit }) {
         {/* Marquee Ticker */}
         <div className="marquee-container">
           <div className="marquee-text">
-            ★★★ 歡迎來到腦電波教（サイコヘルメット教）官方網站！神樹（巨大花椰菜）參拜活動火熱募集中！加入教團即可獲得心靈的平靜！★★★
+            ★★★ 歡迎來到超能安全帽教（サイコヘルメット教）官方網站！神樹（巨大花椰菜）參拜活動火熱募集中！加入教團即可獲得心靈的平靜！★★★
           </div>
         </div>
 
@@ -227,7 +227,7 @@ export default function MainPage({ onExit }) {
                 className={`menu-btn menu-btn-blue ${activeTab === 'what-is' ? 'active' : ''}`}
                 onClick={() => handleTabChange('what-is')}
               >
-                〇 腦電波罩是什麼？
+                〇 超能安全帽教是什麼？
               </button>
               <button 
                 className={`menu-btn menu-btn-red ${activeTab === 'teachings' ? 'active' : ''}`}
@@ -507,7 +507,7 @@ export default function MainPage({ onExit }) {
                     </li>
                     <li style={{ marginBottom: '10px' }}>
                       <strong>每日歡笑，拒絕壓力 (毎日楽しく笑う)：</strong> 
-                      壓力是心靈的除草劑。在腦電波教中，我們提倡開懷大笑，讓心靈隨時充滿能量。
+                      壓力是心靈的除草劑。在超能安全帽教中，我們提倡開懷大笑，讓心靈隨時充滿能量。
                     </li>
                     <li style={{ marginBottom: '10px' }}>
                       <strong>尋求人與人的真誠連結 (真の繋がり)：</strong> 
@@ -613,7 +613,7 @@ export default function MainPage({ onExit }) {
                   <h2 className="merch-section-title" style={{ fontSize: '1.6rem' }}>常見問答 Q&A</h2>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', lineHeight: '1.6' }}>
                     <div>
-                      <h4 style={{ color: 'var(--color-retro-red)' }}>Q: 加入腦電波教需要繳納昂貴的會費嗎？</h4>
+                      <h4 style={{ color: 'var(--color-retro-red)' }}>Q: 加入超能安全帽教需要繳納昂貴的會費嗎？</h4>
                       <p style={{ paddingLeft: '15px', borderLeft: '3px solid #ccc' }}>
                         A: 完全不需要！我們是一個倡導心靈自由與和諧的團體，加入教團是免費的。
                         我們僅提供周邊商品的自由認購與奉獻箱，所有資金均用於教團宣傳及社區公益服務。
@@ -755,7 +755,7 @@ export default function MainPage({ onExit }) {
                 </div>
                 <div className="tweet-item">
                   <span className="tweet-user">@believer_A</span>
-                  <p>自從我把房間鋪滿花椰菜之後，考試真的都拿100分！腦電波教真的太神啦！</p>
+                  <p>自從我把房間鋪滿花椰菜之後，考試真的都拿100分！超能安全帽教真的太神啦！</p>
                 </div>
                 <div className="tweet-item">
                   <span className="tweet-user">@spirits_n_such</span>
