@@ -697,6 +697,7 @@ body {
   
   .content-panel {
     width: 100%; /* Take full width on mobile */
+    padding: 15px 10px; /* 縮小手機版內邊距，提供更多閱讀空間 */
   }
   
   .mobile-menu-toggle {
@@ -711,16 +712,29 @@ body {
     display: block;
   }
   
+  /* 手機版隱藏右側欄，避免下方堆疊過長且雜亂 */
   .sidebar-right {
-    display: block;
-    width: 100%;
-    border-left: none;
-    border-top: var(--border-thick);
-    align-items: center; /* Center content on mobile */
+    display: none !important;
   }
   
   .main-header-text {
     font-size: 1.8rem;
+  }
+
+  /* 手機版留言板輸入框改為垂直堆疊 */
+  .board-input-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .board-input-name {
+    width: 100%;
+  }
+
+  /* 手機版周邊商品表格儲存格縮減內邊距與字型，避免寬度撐開產生橫向滾動 */
+  .merch-table th, .merch-table td {
+    padding: 6px 4px;
+    font-size: 0.85rem;
   }
 }
 

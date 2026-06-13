@@ -17,7 +17,7 @@ export default function LandingPage({ onEnter }) {
   };
 
   return (
-    <div className="landing-container" style={{ position: 'relative', minHeight: '100vh', justifyContent: 'space-evenly' }}>
+    <div className="landing-container" style={{ position: 'relative', minHeight: '100vh', justifyContent: 'center', gap: '15px', padding: '40px 20px' }}>
       
       {/* SVG Wiggle Filter (手繪歪歪扭扭效果濾鏡) */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
@@ -103,11 +103,11 @@ export default function LandingPage({ onEnter }) {
       */}
       <div style={{
         width: '100%',
-        height: '420px', /* 👈 調整此處數值（例如 500px）以放大/縮小頭像的高 */
+        height: '280px', /* 👈 已從 420px 縮小至 280px，避免垂直高度溢出切到 ENTER 按鈕 */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '20px',
+        marginBottom: '0px', /* 👈 移除底部邊距，改用主容器的 gap 統一控制間距 */
         padding: '0 20px'
       }}>
         <img 
@@ -132,11 +132,11 @@ export default function LandingPage({ onEnter }) {
       */}
       <div style={{
         width: '100%',
-        height: '110px', /* 👈 調整此處數值來限制標題圖片的最大高度 */
+        height: '80px', /* 👈 已從 110px 縮小至 80px，防止高度切到 ENTER */
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '20px',
+        marginBottom: '0px', /* 👈 移除底部邊距 */
         filter: 'url(#wiggle)' /* 👈 標題圖案同樣套用手繪歪斜濾鏡 */
       }}>
         <img 
@@ -144,7 +144,7 @@ export default function LandingPage({ onEnter }) {
           alt="－ サイコヘルメット教 －" 
           style={{
             maxHeight: '100%',
-            maxWidth: '80%', /* 👈 調整此百分比可以控制標題在螢幕上的寬度比例 */
+            maxWidth: '95%', /* 👈 改為 95% 寬度，在手機版上可以儘可能塞滿左右 */
             objectFit: 'contain'
           }}
         />
@@ -165,7 +165,7 @@ export default function LandingPage({ onEnter }) {
           background: 'none',
           border: 'none',
           color: 'white',
-          fontSize: '3.2rem', /* 👈 調整字體大小（例如 4rem）可以放大 ENTER */
+          fontSize: '2.8rem', /* 👈 由於間距變為緊湊，ENTER 字型可以稍微放大為 2.8rem 看得更清楚 */
           fontWeight: 'bold',
           cursor: 'pointer',
           letterSpacing: '0.15em',

@@ -186,22 +186,28 @@ export default function MainPage({ onExit }) {
             </svg>
 
             <div className="sidebar-content-wrapper">
-              {/* Hand-drawn Menu Icon at top of left sidebar */}
-              <div style={{ display: 'flex', justifyContent: 'center', margin: '15px 0 25px 0' }}>
-              <svg width="60" height="45" viewBox="0 0 40 30" style={{ filter: 'url(#wiggle-sidebar)' }}>
-                <path d="M 5,6 Q 20,4 35,6" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
-                <path d="M 6,15 Q 18,17 34,14" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
-                <path d="M 4,24 Q 22,23 36,25" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
-              </svg>
-            </div>
-
-            {/* Hamburger menu for mobile */}
-            <button 
-              className="mobile-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              MENU ☰
-            </button>
+              {/* Hand-drawn Menu Icon (Clickable to toggle menu on mobile) */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '15px auto 20px auto',
+                  outline: 'none'
+                }}
+                title="選單"
+              >
+                <svg width="60" height="45" viewBox="0 0 40 30" style={{ filter: 'url(#wiggle-sidebar)' }}>
+                  <path d="M 5,6 Q 20,4 35,6" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+                  <path d="M 6,15 Q 18,17 34,14" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+                  <path d="M 4,24 Q 22,23 36,25" stroke="black" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+                </svg>
+              </button>
 
             <div className={`menu-list-collapse ${mobileMenuOpen ? 'show' : ''}`}>
               {/* BGM Toggle Widget */}
